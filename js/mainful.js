@@ -1,4 +1,3 @@
-
 let model = document.getElementById("modelInput");
 let shase = document.getElementById("shaseInput");
 let motor = document.getElementById("motorInput");
@@ -21,25 +20,28 @@ async function initApp() {
   }
 
   await getProducts(); // لازم بعد ما نحدد isAdmin
-  displayProducts();   // دي بقى بتشوف isAdmin الحقيقي
+  displayProducts(); // دي بقى بتشوف isAdmin الحقيقي
 }
 
 window.onload = initApp;
 
-async function addProduct() { if (!isAdmin) {
-  alert("لا تملك صلاحية الإضافة");
-  return;
-}
+async function addProduct() {
+  if (!isAdmin) {
+    alert("لا تملك صلاحية الإضافة");
+    return;
+  }
 
   if (
     !model.value ||
-    !shase.value || !motor.value || 
-    !store.value ||  !color.value
+    !shase.value ||
+    !motor.value ||
+    !store.value ||
+    !color.value
   ) {
-    alert('اضف حميع البيانات يبني ...');
+    alert("اضف حميع البيانات يبني ...");
     return;
   }
-  
+
   let prodData = {
     model: model.value,
     shase: shase.value,
@@ -56,24 +58,24 @@ async function addProduct() { if (!isAdmin) {
       headers: { "Content-Type": "application/json" },
     }
   );
- 
-  
 
   let finalResponse = await response.json();
   arrData.push(finalResponse);
   console.log(finalResponse);
   displayProducts(arrData);
+  alert("تمت الاضافة بنجاح....");
   clearInputs();
 }
 
 async function getProducts() {
-  let response = await fetch(`https://681880365a4b07b9d1cf6782.mockapi.io/elsalambikesstore/scooters`);
+  let response = await fetch(
+    `https://681880365a4b07b9d1cf6782.mockapi.io/elsalambikesstore/scooters`
+  );
   arrData = await response.json();
+  displayProducts();
 }
 
-
-function displayProducts(data=arrData) {
-  ;
+function displayProducts(data = arrData) {
   let categoryRow = "";
   for (let i = 0; i < data.length; i++) {
     categoryRow += `
@@ -86,8 +88,16 @@ function displayProducts(data=arrData) {
         <td>${data[i].store}</td>
 
         <td>${data[i].color}</td>
-      <td>${isAdmin ? `<button class="btn btn-danger btn-sm" onclick="deleteProduct('${arrData[i].id}')">حذف</button>` : "🚫​"}</td>
-        <td>${isAdmin ? `<button class="text-white btn btn-primary btn-sm" onclick="editProduct('${arrData[i].id}')">تعديل</button>` : "🚫​"}</td>
+      <td>${
+        isAdmin
+          ? `<button class="btn btn-danger btn-sm" onclick="deleteProduct('${arrData[i].id}')">حذف</button>`
+          : "🚫​"
+      }</td>
+        <td>${
+          isAdmin
+            ? `<button class="text-white btn btn-primary btn-sm" onclick="editProduct('${arrData[i].id}')">تعديل</button>`
+            : "🚫​"
+        }</td>
 
 
      </tr>
@@ -97,32 +107,27 @@ function displayProducts(data=arrData) {
   document.getElementById("tRow").innerHTML = categoryRow;
 }
 async function deleteProduct(id) {
-  const confirmDelete = confirm("هل أنت متأكد من حذف هذا المنتج؟");
+  let confirmDelete = confirm("هل أنت متأكد من الحذف؟");
   if (!confirmDelete) return;
 
-  try {
-    let response = await fetch(
-      `https://681880365a4b07b9d1cf6782.mockapi.io/elsalambikesstore/scooters/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
-
-    if (response.ok) {
-      console.log("Deleted successfully");
-      getProducts();
-    } else {
-      console.error("Failed to delete");
+  let response = await fetch(
+    `https://681880365a4b07b9d1cf6782.mockapi.io/elsalambikesstore/scooters/${id}`,
+    {
+      method: "DELETE",
     }
-  } catch (error) {
-    console.error("Error:", error);
+  );
+
+  if (response.ok) {
+    getProducts();
+    alert('تم الحذف بنجاح ...')
+  } else {
+    alert("فشل في الحذف...");
   }
-  displayProducts();
 }
+
 function editProduct(id) {
   const product = arrData.find((item) => item.id == id);
   if (!product) return;
-
 
   model.value = product.model;
   shase.value = product.shase;
@@ -130,7 +135,7 @@ function editProduct(id) {
   store.value = product.store;
   color.value = product.color;
 
-  currentEditingId = id; 
+  currentEditingId = id;
 }
 async function updateProduct() {
   if (!currentEditingId) {
@@ -139,7 +144,6 @@ async function updateProduct() {
   }
 
   let updatedData = {
-
     model: model.value,
     shase: shase.value,
     motor: motor.value,
@@ -159,14 +163,13 @@ async function updateProduct() {
   if (response.ok) {
     console.log("Updated successfully");
     currentEditingId = null;
-    alert('تم تعديل المنتج...')
-    getProducts(); 
+    alert("تم تعديل المنتج...");
+    getProducts();
   } else {
     console.error("Failed to update");
   }
-  
-  clearInputs();
 
+  clearInputs();
 }
 function clearInputs() {
   model.value = "";
@@ -178,16 +181,16 @@ function clearInputs() {
 function searchProducts() {
   const searchTerm = document.getElementById("searchInput").value.toLowerCase();
 
-  const filteredData = arrData.filter(product =>
-    product.model.toLowerCase().includes(searchTerm) ||
-    product.shase.toLowerCase().includes(searchTerm) ||
-    product.motor.toLowerCase().includes(searchTerm) ||
-
-    product.store.toLowerCase().includes(searchTerm) 
+  const filteredData = arrData.filter(
+    (product) =>
+      product.model.toLowerCase().includes(searchTerm) ||
+      product.shase.toLowerCase().includes(searchTerm) ||
+      product.motor.toLowerCase().includes(searchTerm) ||
+      product.store.toLowerCase().includes(searchTerm)
   );
 
   displayProducts(filteredData);
 }
-function logOut(){
-  location.reload()
+function logOut() {
+  location.reload();
 }
