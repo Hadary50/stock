@@ -1,10 +1,16 @@
 body{
-  background-image: url(../images/background-with-clear-watercolor_1020-960.avif);
+  /* background-image: url(../images/background-with-clear-watercolor_1020-960.avif); */
   background-size: cover;
   background-position: center center;
   direction: rtl;
+  background-color: #f8f9fa
 }
 .model{
   text-transform: capitalize;
   font-weight: bolder;
+}
+span{
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
 }

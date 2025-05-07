@@ -86,8 +86,8 @@ function displayProducts(data=arrData) {
         <td>${data[i].store}</td>
 
         <td>${data[i].color}</td>
-      <td>${isAdmin ? `<button class="btn btn-danger" onclick="deleteProduct('${arrData[i].id}')">Delete</button>` : ""}</td>
-        <td>${isAdmin ? `<button class="text-white btn btn-warning" onclick="editProduct('${arrData[i].id}')">Edit</button>` : ""}</td>
+      <td>${isAdmin ? `<button class="btn btn-danger btn-sm" onclick="deleteProduct('${arrData[i].id}')">حذف</button>` : "🚫​"}</td>
+        <td>${isAdmin ? `<button class="text-white btn btn-primary btn-sm" onclick="editProduct('${arrData[i].id}')">تعديل</button>` : "🚫​"}</td>
 
 
      </tr>
@@ -188,4 +188,6 @@ function searchProducts() {
 
   displayProducts(filteredData);
 }
-
+function logOut(){
+  location.reload()
+}

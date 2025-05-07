@@ -10,13 +10,15 @@
     <link rel="shortcut icon" href="images/EL SALAM BIKES.png" type="image/x-icon">
 </head>
 
-<body class="p-4">
+<body>
+  <div class="container mt-4">
     <div class="text-center text-bg-warning  rounded-1">
         <h1 class="text-danger fw-bolder ">STOCK <i class="fa-solid fa-motorcycle"></i></h1>
         <p class="text-white fw-semibold">Commercial Management</p>
     </div>
     <div class="inputs  justify-content-between">
         <div class="row  justify-content-between">
+            
             <input list="brandOptions" class=" form-control w-25" id="modelInput" placeholder="اختر الموديل أو اكتب">
             <datalist id="brandOptions">
                 <option value="Orbit2">
@@ -85,17 +87,19 @@
 
         </div>
     </div>
-    <input type="text" id="searchInput" class=" w-50 mt-2" placeholder=" ابحث بالمخزن أو الموديل أو الشاسيه أو الماتور"
+    <div class="d-flex justify-content-between">
+        <input type="text" id="searchInput" class=" w-50 mt-2" placeholder=" ابحث بالمخزن أو الموديل أو الشاسيه أو الماتور"
         oninput="searchProducts()">
+<span onclick="logOut()">تسجيل الخروج</span>
+    </div>
+    <table class="table table-striped table-hover table-bordered text-center mt-5">
 
-    <table class="table table-hover text-center mt-5">
-        <!-- <input type="text" oninput=search(this.value) class="mt-2 w-50 form-control"> -->
-        <thead class="table-head">
+        <thead class="table-dark">
             <tr>
                 <!-- <th>Brand Name</th> -->
                 <th>م</th>
 
-                <th>الموديل</th>
+                <th> الموديل 🛵​</th>
                 <th>الشاسيه</th>
                 <th>الماتور</th>
                 <!-- <th>Branch</th> -->
@@ -113,6 +117,7 @@
     </table>
 
     
+  </div>
     <script src="js/jquery-3.7.1.js"></script>
     <script src="js/mainful.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
