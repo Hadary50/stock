@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>STOCK Control</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/EL SALAM BIKES.png" type="image/x-icon">
+</head>
+
+<body class="p-4">
+    <div class="text-center text-bg-warning  rounded-1">
+        <h1 class="text-danger fw-bolder ">STOCK <i class="fa-solid fa-motorcycle"></i></h1>
+        <p class="text-white fw-semibold">Commercial Management</p>
+    </div>
+    <div class="inputs  justify-content-between">
+        <div class="row  justify-content-between">
+            <input list="brandOptions" class=" form-control w-25" id="modelInput" placeholder="اختر الموديل أو اكتب">
+            <datalist id="brandOptions">
+                <option value="Orbit2">
+                <option value="fiddle2">
+                <option value="fiddle3">
+                <option value="sr-150">
+                <option value="sr-200">
+                <option value="jet 14 evo">
+                <option value="jet 14 DD">
+                <option value="jet 14 IA">
+                <option value="new st-200">
+                <option value="Fiddle 4 electric">
+                <option value="Nhx-180 cbs">
+                <option value="Nhx-180 ABS">
+                <option value="Jet x IA">
+            </datalist>
+
+            <input type="number" class="form-control w-25" id="shaseInput" placeholder="الشاسيه">
+            <input type="number" class="form-control w-25" id="motorInput" placeholder="الماتور">
+        </div>
+        <div class="row justify-content-between mt-2">
+        </div>
+        <div class="row  justify-content-around mt-2">
+            <!-- <input type="text" class="form-control w-25" id="storeInput" placeholder="المخزن"> -->
+            <input list="storeOption" class="form-control w-25" id="storeInput" placeholder="اختر المخزن أو اكتب">
+            <datalist id="storeOption">
+              <option value="Commercial">
+              <option value="Nasr City">
+              <option value="Gisr El Suez">
+              <option value="5th setelment">
+              <option value="Dokki">
+              <option value="Iride">
+              <option value="Scooter way">
+                <option value="Scooter Garage">
+                    <option value="Mg Moxi">
+                        <option value="Tiger">
+                        <option value="Biker One">
+
+
+
+            </datalist>
+            
+            <input list="colourOption" class="form-control w-25" id="colourInput" placeholder="اختر اللون أو اكتب">
+            <datalist id="colourOption">
+              <option value="Red">
+              <option value="Green">
+              <option value="Blue">
+              <option value="White">
+              <option value="Black">
+              <option value="Yellow">
+                <option value="Light blue">
+                    <option value="Dark blue">
+                        <option value="Pepsi">
+
+            </datalist>
+            
+        </div>
+        <div class="botton d-flex justify-content-center">
+            <button class="btn btn-success w-50 mx-auto  mt-2" onclick=addProduct()>اضافة <i
+                    class="fa-solid fa-plus"></i></button>
+
+        </div>
+        <div class="botton d-flex justify-content-center">
+            <button class="btn btn-warning w-50 text-white mx-auto  mt-2" onclick=updateProduct()>تعديل <i
+                    class="fa-solid fa-file-pen"></i></button>
+
+        </div>
+    </div>
+    <input type="text" id="searchInput" class=" w-50 mt-2" placeholder=" ابحث بالمخزن أو الموديل أو الشاسيه أو الماتور"
+        oninput="searchProducts()">
+
+    <table class="table table-hover text-center mt-5">
+        <!-- <input type="text" oninput=search(this.value) class="mt-2 w-50 form-control"> -->
+        <thead class="table-head">
+            <tr>
+                <!-- <th>Brand Name</th> -->
+                <th>م</th>
+
+                <th>الموديل</th>
+                <th>الشاسيه</th>
+                <th>الماتور</th>
+                <!-- <th>Branch</th> -->
+                <th><i class="fa-solid fa-shop-lock"></i> المخزن</th>
+                <!-- <th>Year</th> -->
+                <th>اللون</th>
+                <th><i class="fa-solid fa-trash"></i> حذف</th>
+                <th> <i class="fa-solid fa-file-pen"></i> تعديل</th>
+            </tr>
+        </thead>
+        <tbody id="tRow">
+
+
+        </tbody>
+    </table>
+
+    
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="js/mainful.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

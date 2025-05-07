@@ -1,0 +1,10 @@
+body{
+  background-image: url(../images/background-with-clear-watercolor_1020-960.avif);
+  background-size: cover;
+  background-position: center center;
+  direction: rtl;
+}
+.model{
+  text-transform: capitalize;
+  font-weight: bolder;
+}
